@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Mockery\Exception\InvalidOrderException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -35,7 +36,22 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (Throwable $e) {
-            //
+            // var_dump($e->message);
+           //  echo('Handle Error');
         });
+
+        $this->renderable(function (Throwable $e, $request) {
+            // return response()->json([
+            //     'message' => 'Record not found.'
+            // ], 404);
+        });
+    
     }
+
+    // public function render($request, Throwable $e) {
+    //   // return response()->json([
+    //   //   'message' => 'Record not found.'
+    //   // ], 404);
+    // }
+    
 }
